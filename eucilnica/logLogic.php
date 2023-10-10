@@ -6,11 +6,13 @@ include("config.php");
 $username = $_POST['logemail'];
 $password = $_POST['logpass'];
 
+$hashed_password = md5($password);
+
 // Set error message
 $error = "Invalid username or password!";
 
 // SQL query to check if the provided login credentials are valid
-$sql = "SELECT * FROM user WHERE username='$username' AND pasword='$password'";
+$sql = "SELECT * FROM user WHERE username='$username' AND pasword='$hashed_password'";
 $result = $conn->query($sql);
 
 // Check if a row is returned

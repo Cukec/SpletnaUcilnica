@@ -35,7 +35,7 @@
             <p><?php if(empty($_GET) == false) echo $error; ?></p>
           </div>
           <button class="btn" type="submit">Login</button>
-          <a href="#" class="btn-link">Don't have an account?</a>
+          <a href="register.php" class="btn-link">Don't have an account?</a>
         </form>
       </div>
 </body>
