@@ -68,7 +68,7 @@
         <td style="margin: 50px"> <!-- add subject -->
             <div class="card" style="margin: 50px"> 
                 <h4 class="title">Add subject</h4>
-                <form method="POST" action="logLogic.php">
+                <form method="POST" action="addSubject.php">
                 <div class="field">
                     <svg class="input-icon" viewBox="0 0 45.999 45.999" xmlns="http://www.w3.org/2000/svg">
                     <path d="M39.264,6.736c-8.982-8.981-23.545-8.982-32.528,0c-8.982,8.982-8.981,23.545,0,32.528c8.982,8.98,23.545,8.981,32.528,0
