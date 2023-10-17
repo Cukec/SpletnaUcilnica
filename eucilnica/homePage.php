@@ -20,6 +20,7 @@
                 <td><a href="#">subjects</a></td>
                 <td><a href="admin.php"><?php if($role == 'a') echo "admin" ?></a></td>
             </tr>
+            n
         </table>
     </div>
     <div class="content">
