@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `comment` (
-  `comment_id` int(11) NOT NULL,
+  `comment_id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
   `content` varchar(255) NOT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -40,7 +40,7 @@ CREATE TABLE `comment` (
 --
 
 CREATE TABLE `file` (
-  `file_id` int(11) NOT NULL,
+  `file_id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
   `path` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -51,7 +51,7 @@ CREATE TABLE `file` (
 --
 
 CREATE TABLE `handout` (
-  `handout_id` int(11) NOT NULL,
+  `handout_id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
   `subject_id` int(11) NOT NULL,
   `file_id` int(11) NOT NULL,
   `comment_id` int(11) NOT NULL,

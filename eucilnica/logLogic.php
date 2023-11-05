@@ -12,7 +12,7 @@ $hashed_password = md5($password);
 $error = "Invalid username or password!";
 
 // SQL query to check if the provided login credentials are valid
-$sql = "SELECT * FROM user WHERE username='$username' AND pasword='$hashed_password'";
+$sql = "SELECT * FROM user WHERE username='$username' AND password='$hashed_password'";
 $result = $conn->query($sql);
 
 // Check if a row is returned

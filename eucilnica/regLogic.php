@@ -18,7 +18,7 @@ if($result->num_rows === 0){
 
     if($password == $passwordConfirm){
 
-        $sql_insert = "INSERT INTO user (name, surname, role, username, pasword) VALUES ('$name', '$surname', 's', '$username', '$hash_pass')";
+        $sql_insert = "INSERT INTO user (name, surname, role, username, password) VALUES ('$name', '$surname', 's', '$username', '$hash_pass')";
         $stmt = $conn->prepare($sql_insert);
         $stmt->execute();
 

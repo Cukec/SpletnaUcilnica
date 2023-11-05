@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `comment` (
-  `comment_id` int(11) NOT NULL,
+  `comment_id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
   `content` varchar(255) NOT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -40,7 +40,7 @@ CREATE TABLE `comment` (
 --
 
 CREATE TABLE `file` (
-  `file_id` int(11) NOT NULL,
+  `file_id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
   `path` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -51,7 +51,7 @@ CREATE TABLE `file` (
 --
 
 CREATE TABLE `handout` (
-  `handout_id` int(11) NOT NULL,
+  `handout_id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
   `subject_id` int(11) NOT NULL,
   `file_id` int(11) NOT NULL,
   `comment_id` int(11) NOT NULL,
@@ -65,7 +65,7 @@ CREATE TABLE `handout` (
 --
 
 CREATE TABLE `subject` (
-  `subject_id` int(11) NOT NULL,
+  `subject_id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
   `user_id` int(11) NOT NULL,
   `class_name` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -77,7 +77,7 @@ CREATE TABLE `subject` (
 --
 
 CREATE TABLE `user` (
-  `user_id` int(11) NOT NULL,
+  `user_id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
   `name` varchar(20) NOT NULL,
   `surname` varchar(20) NOT NULL,
   `role` char(1) NOT NULL,
@@ -93,36 +93,31 @@ CREATE TABLE `user` (
 -- Indeksi tabele `comment`
 --
 ALTER TABLE `comment`
-  ADD PRIMARY KEY (`comment_id`),
   ADD KEY `FK_1` (`user_id`);
 
 --
 -- Indeksi tabele `file`
 --
-ALTER TABLE `file`
-  ADD PRIMARY KEY (`file_id`);
 
 --
 -- Indeksi tabele `handout`
 --
 ALTER TABLE `handout`
-  ADD PRIMARY KEY (`handout_id`),
-  ADD KEY `FK_1` (`subject_id`,`user_id`),
+  ADD KEY `FK_1` (`subject_id`),
   ADD KEY `FK_2` (`file_id`),
-  ADD KEY `FK_3` (`comment_id`);
+  ADD KEY `FK_4` (`comment_id`),
+  ADD KEY `FK_3`(`user_id`);
 
 --
 -- Indeksi tabele `subject`
 --
 ALTER TABLE `subject`
-  ADD PRIMARY KEY (`subject_id`,`user_id`),
   ADD KEY `FK_1` (`user_id`);
 
 --
 -- Indeksi tabele `user`
 --
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`user_id`);
+
 
 --
 -- Omejitve tabel za povzetek stanja
