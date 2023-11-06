@@ -34,6 +34,16 @@ if(isset($_GET['editid'])){
     <link rel="stylesheet" href="home_page.css">
 </head>
 <body>
+    <div class="navBar">
+        <table>
+            <tr>
+                <td class="profilePic"><a href="#"><img src="#" height="20px" width="20px"></a></td>
+                <td><a href="#">home</a></td>
+                <td><a href="subjects.php">subjects</a></td>
+                <td><a href="admin.php"><?php if($role == 'a') echo "admin" ?></a></td>
+            </tr>
+        </table>
+    </div>
             <div class="card" style="margin: 50px"> 
                 <h4 class="title">Edit subject</h4>
                 <form method="post" action="">

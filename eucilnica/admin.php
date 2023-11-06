@@ -15,7 +15,7 @@
             <tr>
                 <td class="profilePic"><a href="#"><img src="#" height="20px" width="20px"></a></td>
                 <td><a href="#">home</a></td>
-                <td><a href="#">subjects</a></td>
+                <td><a href="subjects.php">subjects</a></td>
                 <td><a href="admin.php"><?php if($role == 'a') echo "admin" ?></a></td>
             </tr>
         </table>
@@ -128,6 +128,9 @@
                         <p><?php if(empty($_GET) == false) echo $error; ?></p>
                     </div>
                     <button class="btn" type="submit">Add</button>
+                </form>
+                <form action=" allTeachers.php">
+                    <button class="btn" type="submit">View all</button>
                 </form>
             </div>
         </td>

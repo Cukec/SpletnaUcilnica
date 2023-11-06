@@ -1,6 +1,6 @@
 <?php include("config.php"); include("user_info.php"); 
 
-$query = "select * FROM subject";
+$query = "select * FROM user WHERE role = 't'";
 $result = mysqli_query($conn, $query);
 
 ?>
@@ -10,7 +10,7 @@ $result = mysqli_query($conn, $query);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Subjects</title>
+    <title>Document</title>
     <link rel="stylesheet" href="login.css">
     <link rel="stylesheet" href="home_page.css">
 </head>
@@ -27,7 +27,9 @@ $result = mysqli_query($conn, $query);
     </div>
     <table align="center">
         <tr>
-            <td>Subject name</td>
+            <td>Teacher name</td>
+            <td>Teacher surname</td>
+            <td>Username</td>
             <td>Edit</td>
             <td>Delete</td>
         </tr>
@@ -37,9 +39,11 @@ $result = mysqli_query($conn, $query);
                 while ($row = mysqli_fetch_array($result)) {
                 
             ?>
-                <td><?php echo $row['class_name'] ?></td>
-                <td><a href="editSubject.php?editid='<?php echo $row['subject_id']?>'" class="btn">Edit</a></td>
-                <td><a href="deleteSubject.php?deleteid='<?php echo $row['subject_id']?>'" class="btn">Delete</a></td>
+                <td><?php echo $row['name'] ?></td>
+                <td><?php echo $row['surname'] ?></td>
+                <td><?php echo $row['username'] ?></td>
+                <td><a href="editTeacher.php?editid='<?php echo $row['user_id']?>'" class="btn">Edit</a></td>
+                <td><a href="deleteTeacher.php?deleteid='<?php echo $row['user_id']?>'" class="btn">Delete</a></td>
 
         </tr>
             <?php

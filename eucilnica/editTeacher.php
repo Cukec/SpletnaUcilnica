@@ -63,12 +63,12 @@ if(isset($_POST["subject"])){
 
     $name = $_POST['subject'];
 
-    $sql2 = "DELETE FROM student_subject WHERE user_id = $did";
+    $sql2 = "DELETE FROM teacher_subject WHERE user_id = $did";
                 mysqli_query($conn, $sql2);
 
     foreach($name as $subject){
 
-       $sql = "INSERT INTO student_subject (user_id, subject_id) VALUES ($did, $subject)";
+       $sql = "INSERT INTO teacher_subject (user_id, subject_id) VALUES ($did, $subject)";
        mysqli_query($conn,$sql);
     }
 
@@ -155,7 +155,7 @@ if(isset($_POST["subject"])){
 
                     <input type="checkbox" name="subject[]" value="<?php echo $row1['subject_id']?>" <?php 
                     
-                    $sql = "SELECT * FROM student_subject WHERE user_id = $did AND subject_id = $row1[subject_id]";
+                    $sql = "SELECT * FROM teacher_subject WHERE user_id = $did AND subject_id = $row1[subject_id]";
                     $result2 = mysqli_query($conn, $sql);
 
                     if(mysqli_num_rows($result2) > 0){
