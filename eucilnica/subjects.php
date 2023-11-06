@@ -1,7 +1,6 @@
 <?php include("config.php"); include("user_info.php");
 
     $sid = $_GET['id'];
-
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +51,7 @@
     <div>
         <?php
         if($role == 't'){?>
-            <form method="post" action="addAsignment.php?id='<?php echo urlencode($sid);?>'" enctype="multipart/form-data">
+            <form method="post" action="addAsignment.php?id=<?php echo urlencode($sid);?>" enctype="multipart/form-data">
             <input type="text" placeholder="Title" name="title" required>
             <input type="text" placeholder="Description" name="description" required>
             <input type="file" placeholder="Gradivo" name="gradivo">
@@ -62,37 +61,61 @@
         ?>
     </div>
     <div class="assignments">
-        <?php /*
+        <?php 
         
-        $sql = "SELECT * FROM asignment WHERE subject_id = $sid";
-        $result = $conn->query($sql);
+        $sql = "SELECT * 
+                FROM asignment asi 
+                JOIN subject sub ON asi.subject_id = sub.subject_id 
+                JOIN teacher_subject tea ON sub.subject_id = tea.subject_id 
+                JOIN user u ON tea.user_id = u.user_id 
+                WHERE asi.subject_id = $sid;";
+                $result = $conn->query($sql);
+
+                if(isset($result)){
+                    if($result->num_rows > 0){
+                    
+    
+                        for($i = 0; $i < $result->num_rows; $i++){
+                            $row = mysqli_fetch_assoc($result);
+                            $class_id = $row['subject_id'];
+                            $assignment_id = $row['asignment_id'];
+                            $path = $row['path_gradivo'];
+                            
+                            $sql = "SELECT class_name FROM subject WHERE subject_id='$class_id'";
+                            $result2 = $conn->query($sql);
+                            $class_name = mysqli_fetch_assoc($result2);
+                            ?>
+                            
+                                <div class="assignment-preview">
+                                    <div class="title"> <?php echo $row['title']; ?> </div>
+                                    <div class="assignment-subject"><p><?php echo $class_name['class_name']; ?></p></div>
+                                    <div class="description"><b>Description: </b><?php echo $row['description']; ?></div>
+                                    <?php
+                                    if($path == 'files/'){
+                                        
+                                    }else{
+                                        ?><div><a href="downloadGradivo.php?id='$path'"><p>Gradivo</p></a></div><?php
+                                    }
+                                    ?>
+                                    
+                                    <a href="assignment.php?id='<?php echo urlencode($assignment_id); ?>'" class="action-button">Delete Assignment</a>
+                                </div>
+                            
+                        <?php
         
-        if($result->num_rows > 0){
-            
-
-            for($i = 0; $i < $result->num_rows; $i++){
-                $row = mysqli_fetch_assoc($result);
-                $class_id = $row['subject_id'];
-                $assignment_id = $row['asignment_id'];
+                        }
+                    }
+                }else{
+                    echo 
+                    "<div style='height: 20%; width: 100%; border: 2px dashed #87837e; text-align: center; border-radius:8px; padding-top: 15%;'>
+                        <p style='color #87837e'>You have no assignments</p>
+                    </div>";
+                }
                 
-                $sql = "SELECT class_name FROM subject WHERE subject_id='$class_id'";
-                $result2 = $conn->query($sql);
-                $class_name = mysqli_fetch_assoc($result2);
-                ?>
-                
-                    <div class="assignment-preview">
-                        <div class="title"> <?php echo $row['title']; ?> </div>
-                        <div class="assignment-subject"><p><?php echo $class_name['class_name']; ?></p></div>
-                        <div class="description"><b>Description: </b><?php echo $row['description']; ?></div>
-                        <a href="assignment.php?id='<?php echo urlencode($assignment_id); ?>'" class="action-button">View Assignment</a>
-                    </div>
-                
-            <?php
-
-            }
-        }
-*/
-        ?>
+    
+            ?>
+        
+    
     </div>
 </body>
 </html>
