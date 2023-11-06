@@ -1,11 +1,30 @@
 <?php
-
+include("config.php");
 include("user_info.php");
-?>
 
-<form action="">
-    <input type="text" placeholder="Title" name="title">
-    <input type="text" placeholder="Description" name="description">
-    <input type="file" placeholder="Gradivo" name="gradivo">
-    <input type="submit">
-</form>
+$sql_inserts;
+$subject_id = $_GET['id'];
+$title = $_POST['title'];
+
+if(isset($_POST['description'])){
+    $description = $_POST['description'];
+}
+
+if(isset($_FILES['gradivo'])){
+    $uploadDirectory= "files/";
+    $gradivoName = $uploadDirectory . basename($_FILES["gradivo"]["name"]);
+    move_uploaded_file($_FILES["gradivo"]["name"], $gradivoName);
+
+    $sql_inserts = "INSERT INTO asignment (title, description, path_gradivo, subject_id, teacher_id) VALUES ('$title', '$description', '$gradivoName', '$subject_id', '$user_id')";
+    $stmt = $conn->prepare($sql_inserts);
+        $stmt->execute();
+
+        header("location: subjects.php");
+}else{
+    $sql_inserts = "INSERT INTO asignment (title, description, subject_id, teacher_id) VALUES ('$title', '$description', '$subject_id, '$user_id')";
+    $stmt = $conn->prepare($sql_inserts);
+        $stmt->execute();
+        header("location: subjects.php");
+}
+
+?>
