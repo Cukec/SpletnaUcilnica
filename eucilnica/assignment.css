@@ -98,3 +98,50 @@ body{
   #file-list {
     margin-top: 20px;
   }
+
+  .hidden-input {
+    display: none;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.file-label {
+    margin-top: 40px;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+    overflow: hidden;
+}
+
+.file-label::before {
+    content: '\1F4C2'; /* Unicode character for a file icon, you can replace this with your SVG icon */
+    font-size: 24px;
+    margin-right: 10px; /* Adjust the spacing between the icon and text as needed */
+}
+
+.submit-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top:20px;
+}
+
+/* Hover effect for the submit button */
+.submit-button:hover {
+    background-color: #218838;
+}

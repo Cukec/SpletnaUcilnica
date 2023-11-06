@@ -5,7 +5,11 @@ include("user_info.php");
 
 $assignment_id = $_GET['id'];
 
-$sql = "SELECT * FROM asignment WHERE asignment_id=$assignment_id";
+
+$sql = "SELECT * 
+FROM handout h 
+JOIN asignment a ON h.asignment_id = a.asignment_id 
+WHERE a.asignment_id = $assignment_id AND h.user_id = $user_id";
 $result = $conn->query($sql);
 $row = mysqli_fetch_assoc($result);
 
@@ -15,6 +19,10 @@ $subject_sql = "SELECT class_name FROM subject WHERE subject_id='$class_id'";
 $subject_result = $conn->query($subject_sql);
 $class_name = mysqli_fetch_assoc($subject_result);
 
+
+if(isset($_GET['reminder'])){
+    $reminder = $_GET['reminder'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -59,13 +67,16 @@ $class_name = mysqli_fetch_assoc($subject_result);
                         <?php
 
                     }
-                    
+                
                     ?>
                 </div>
                 <div id="drop-area">
-                    <form action="upload.php?id=<?php echo urlencode($assignment_id); ?>" method="POST" enctype="multipart/form-data">
-                        <input type="file" name="file">
-                        <input type="submit" class="">
+                    <form action="upload.php?id=<?php echo urlencode($assignment_id); ?>&confirm=<?php if(isset($reminder)) echo urlencode($reminder); ?>" method="POST" enctype="multipart/form-data">
+                    <input type="file" name="file" id="file-input" class="hidden-input">
+                    <label for="file-input" class="file-label">
+                        Choose File
+                    </label>
+                    <input type="submit" class="submit-button" style="<?php echo "display: none;" ?>" value="GO">
                     </form>
                 </div>
             </div>

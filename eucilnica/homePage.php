@@ -91,7 +91,7 @@
                         ?>
                         
                         <div class="subject">
-                            <div class="subject-content"><a href="subject.php?id='<?php echo urlencode($subject_row['subject_id']) ?>'"><?php echo $subject_row['class_name']; ?></a></div>
+                            <div class="subject-content"><a href="subjects.php?id='<?php echo urlencode($subject_row['subject_id']) ?>'"><?php echo $subject_row['class_name']; ?></a></div>
                             <div class="subject-icon">
                                 <svg width="20px" height="20px" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--twemoji" preserveAspectRatio="xMidYMid meet">
                                 <path fill="#553788" d="M15 31c0 2.209-.791 4-3 4H5c-4 0-4-14 0-14h7c2.209 0 3 1.791 3 4v6z"></path>
