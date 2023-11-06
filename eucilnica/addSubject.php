@@ -10,9 +10,9 @@ $result = $conn->query($sql);
 
 if($result->num_rows === 0){
 
-    $sql_insert = "INSERT INTO subject (user_id, class_name) VALUES ('$user_id','$title')";
+    $sql_insert = "INSERT INTO subject (subject_id, class_name) VALUES (null, '$title')";
     $stmt = $conn->prepare($sql_insert);
-    $stmt->execute();
+        $stmt->execute();
 
     $result = $stmt->close();
     header("location: admin.php");
