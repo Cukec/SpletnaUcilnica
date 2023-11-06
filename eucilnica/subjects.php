@@ -94,7 +94,7 @@
                                     if($path == 'files/'){
                                         
                                     }else{
-                                        ?><div><a href="downloadGradivo.php?id='$path'"><p>Gradivo</p></a></div><?php
+                                        ?><div><a href="<?php echo $path; ?>"><p>Gradivo</p></a></div><?php
                                     }
                                     ?>
                                     
