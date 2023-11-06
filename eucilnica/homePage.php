@@ -47,7 +47,7 @@
                 </div>
                 </td>
                 <td><a href="#">home</a></td>
-                <td><a href="#">subjects</a></td>
+                <td><a href="subjects.php">subjects</a></td>
                 <td><a href="admin.php"><?php if($role == 'a') echo "admin" ?></a></td>
             </tr>
         </table>
