@@ -98,7 +98,7 @@
                                     }
                                     ?>
                                     
-                                    <a href="assignment.php?id='<?php echo urlencode($assignment_id); ?>'" class="action-button">Delete Assignment</a>
+                                    <a href="deleteAsignment.php?id='<?php echo urlencode($assignment_id); ?>'" class="action-button">Delete Assignment</a>
                                 </div>
                             
                         <?php
