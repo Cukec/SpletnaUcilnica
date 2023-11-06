@@ -10,6 +10,11 @@
 
     <?php include("user_info.php"); ?>
 
+    <style>
+        
+    </style>
+    </style>
+
 </head>
 <body>
     <div class="navBar">
@@ -34,16 +39,9 @@
                         <div class="data">
                             <div class="svg-container">
                                 <svg height="20px" width="20px" class="input-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M8 6C8 3.79086 9.79086 2 12 2H17.5C19.9853 2 22 4.01472 22 6.5V17.5C22 19.9853 19.9853 22 17.5 22H12C9.79086 22 8 20.2091 8 18V17C8 16.4477 8.44772 16 9 16C9.55228 16 10 16.4477 10 17V18C10 19.1046 10.8954 20 12 20H17.5C18.8807 20 20 18.8807 20 17.5V6.5C20 5.11929 18.8807 4 17.5 4H12C10.8954 4 10 4.89543 10 6V7C10 7.55228 9.55228 8 9 8C8.44772 8 8 7.55228 8 7V6ZM12.2929 8.29289C12.6834 7.90237 13.3166 7.90237 13.7071 8.29289L16.7071 11.2929C17.0976 11.6834 17.0976 12.3166 16.7071 12.7071L13.7071 15.7071C13.3166 16.0976 12.6834 16.0976 12.2929 15.7071C11.9024 15.3166 11.9024 14.6834 12.2929 14.2929L13.5858 13L5 13C4.44772 13 4 12.5523 4 12C4 11.4477 4.44772 11 5 11L13.5858 11L12.2929 9.70711C11.9024 9.31658 11.9024 8.68342 12.2929 8.29289Z"/></svg>
-                            </div>
-                            <a href="#">Log in</a>
-                        </div>
-                        <div class="data">
-                            <div class="svg-container">
-                                <svg height="20px" width="20px" class="input-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M2 6.5C2 4.01472 4.01472 2 6.5 2H12C14.2091 2 16 3.79086 16 6V7C16 7.55228 15.5523 8 15 8C14.4477 8 14 7.55228 14 7V6C14 4.89543 13.1046 4 12 4H6.5C5.11929 4 4 5.11929 4 6.5V17.5C4 18.8807 5.11929 20 6.5 20H12C13.1046 20 14 19.1046 14 18V17C14 16.4477 14.4477 16 15 16C15.5523 16 16 16.4477 16 17V18C16 20.2091 14.2091 22 12 22H6.5C4.01472 22 2 19.9853 2 17.5V6.5ZM18.2929 8.29289C18.6834 7.90237 19.3166 7.90237 19.7071 8.29289L22.7071 11.2929C23.0976 11.6834 23.0976 12.3166 22.7071 12.7071L19.7071 15.7071C19.3166 16.0976 18.6834 16.0976 18.2929 15.7071C17.9024 15.3166 17.9024 14.6834 18.2929 14.2929L19.5858 13L11 13C10.4477 13 10 12.5523 10 12C10 11.4477 10.4477 11 11 11L19.5858 11L18.2929 9.70711C17.9024 9.31658 17.9024 8.68342 18.2929 8.29289Z"/></svg>
                             </div>
-                            <a href="#">Log out</a>
+                            <a href="logOut.php">Log out</a>
                         </div>
                     </div>
                 </div>
@@ -55,7 +53,145 @@
         </table>
     </div>
     <div class="content">
-        <?php echo $name; ?>
+        <!--Subjects-->
+        <div class="subjects-bar">
+            <div class="subjects-title">Subjects</div>
+
+            <?php
+            
+            $sql = "SELECT * FROM subject";
+            $subject_result = $conn->query($sql);
+
+            if($subject_result->num_rows > 0){
+
+                for($i = 0; $i < $subject_result->num_rows; $i++){
+
+                    $subject_row =  mysqli_fetch_assoc($subject_result);
+                    
+                    ?>
+                    
+                    <div class="subject">
+                        <div class="subject-content"><a href="subject.php?id='<?php echo urlencode($subject_row['subject_id']) ?>'"><?php echo $subject_row['class_name']; ?></a></div>
+                        <div class="subject-icon">
+                            <svg width="20px" height="20px" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--twemoji" preserveAspectRatio="xMidYMid meet">
+                            <path fill="#553788" d="M15 31c0 2.209-.791 4-3 4H5c-4 0-4-14 0-14h7c2.209 0 3 1.791 3 4v6z"></path>
+                            <path fill="#9266CC" d="M34 33h-1V23h1a1 1 0 1 0 0-2H10c-4 0-4 14 0 14h24a1 1 0 1 0 0-2z"></path>
+                            <path fill="#CCD6DD" d="M34.172 33H11c-2 0-2-10 0-10h23.172c1.104 0 1.104 10 0 10z"></path>
+                            <path fill="#99AAB5" d="M11.5 25h23.35c-.135-1.175-.36-2-.678-2H11c-1.651 0-1.938 6.808-.863 9.188C9.745 29.229 10.199 25 11.5 25z"></path>
+                            <path fill="#269" d="M12 8a4 4 0 0 1-4 4H4C0 12 0 1 4 1h4a4 4 0 0 1 4 4v3z"></path>
+                            <path fill="#55ACEE" d="M31 10h-1V3h1a1 1 0 1 0 0-2H7C3 1 3 12 7 12h24a1 1 0 1 0 0-2z"></path>
+                            <path fill="#CCD6DD" d="M31.172 10H8c-2 0-2-7 0-7h23.172c1.104 0 1.104 7 0 7z"></path>
+                            <path fill="#99AAB5" d="M8 5h23.925c-.114-1.125-.364-2-.753-2H8C6.807 3 6.331 5.489 6.562 7.5C6.718 6.142 7.193 5 8 5z"></path>
+                            <path fill="#F4900C" d="M20 17a4 4 0 0 1-4 4H6c-4 0-4-9 0-9h10a4 4 0 0 1 4 4v1z"></path>
+                            <path fill="#FFAC33" d="M35 19h-1v-5h1a1 1 0 1 0 0-2H15c-4 0-4 9 0 9h20a1 1 0 1 0 0-2z"></path>
+                            <path fill="#CCD6DD" d="M35.172 19H16c-2 0-2-5 0-5h19.172c1.104 0 1.104 5 0 5z"></path>
+                            <path fill="#99AAB5" d="M16 16h19.984c-.065-1.062-.334-2-.812-2H16c-1.274 0-1.733 2.027-1.383 3.5c.198-.839.657-1.5 1.383-1.5z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <?php
+
+
+                }
+
+            }
+            
+            ?>
+
+            
+        </div>
+
+        <!--Assignmets-->
+        <div class="assignments">
+        <?php 
+        
+        $sql = "SELECT * FROM asignment";
+        $result = $conn->query($sql);
+        
+        if($result->num_rows > 0){
+            
+
+            for($i = 0; $i < $result->num_rows; $i++){
+                $row = mysqli_fetch_assoc($result);
+                $class_id = $row['subject_id'];
+                $assignment_id = $row['asignment_id'];
+                
+                $sql = "SELECT class_name FROM subject WHERE subject_id='$class_id'";
+                $result2 = $conn->query($sql);
+                $class_name = mysqli_fetch_assoc($result2);
+                ?>
+                
+                    <div class="assignment-preview">
+                        <div class="title"> <?php echo $row['title']; ?> </div>
+                        <div class="assignment-subject"><p><?php echo $class_name['class_name']; ?></p></div>
+                        <div class="description"><b>Description: </b><?php echo $row['description']; ?></div>
+                        <a href="assignment.php?id='<?php echo urlencode($assignment_id); ?>'" class="action-button">View Assignment</a>
+                    </div>
+                
+            <?php
+
+            }
+        }
+
+        ?>
+        </div>
+        
+        <!--Notes-->
+        <div class="sidebar">
+            <div class="title">
+                <p>Notes</p>
+            </div>
+            <?php 
+            
+            $sql = "SELECT * FROM reminders WHERE user_id='$user_id'";
+            $notes_result = $conn->query($sql);
+
+            if($notes_result->num_rows > 0){
+
+                for($i = 0; $i < $notes_result->num_rows; $i++){
+
+                    $notes_row = mysqli_fetch_assoc($notes_result);
+                    $forwarding_id = $notes_row['reminder_id'];
+
+                    ?>
+                        <div class="note">
+                            <div class="note-content"><?php echo $notes_row['content'] ?></div>
+                            <div class="delete-icon">
+                                <a href="deleteReminder.php?id=<?php echo urlencode($forwarding_id); ?>">
+                                    <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10 12V17" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M14 12V17" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M4 7H20" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M6 10V18C6 19.6569 7.34315 21 9 21H15C16.6569 21 18 19.6569 18 18V10" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    <?php
+
+                }
+                
+            }else{
+                ?>
+                    <div class="note">
+                        <div class="empty-notes">
+                            <p>You have no notes</p>
+                        </div>
+                    </div>
+                <?php
+            }
+
+            ?>
+        <!-- More notes can be added dynamically here -->
+            <div class="bottom-content">
+                <form method="POST" action="addReminder.php">
+                    <input class="addNote" name="content" type="text" placeholder="Add a new note...">
+                    <input type="submit" value="Add note..." class="add-note-button"></input>
+                </form>
+            </div>
+        </div>
     </div>
 </body>
 </html>

@@ -6,8 +6,193 @@
 body{
     margin: 0;
     background-color: #e5e5e5;
+    font-family: 'font';
 }
 
+.content{
+    margin-top: 50px;
+    display: flex;
+}
+
+/* Assignments */
+.assignments{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 10% 0 7%;
+    border-radius: 10px;
+}
+
+.assignment-preview {
+    margin: 0 5% 0 5%;
+    width: 100%;
+    background-color: #ffffff;
+    text-align: center;
+    padding: 0;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #cdcdcd;
+    padding-bottom: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.assignment-subject {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 80px;
+}
+
+.assignment-subject p{
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 80px;
+}
+
+.description {
+    font-size: 16px;
+    margin-bottom: 30px;
+    text-align: left;
+    padding: 0 10px 0 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.action-button {
+    display: block;
+    width: 100%;
+    height: 30px;
+    padding-top: 10px; /* Removed padding */
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    border-radius: 0 0 10px 10px;
+}
+
+
+/* Notes */
+.sidebar{
+    width: 15%;
+    margin: 0 5% 0 5%;
+    background-color: #ffffff;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    height: calc(50vh - 20px);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar .title{
+    text-align: center;
+    border-bottom: 1px solid #cdcdcd;
+    padding-bottom: auto;
+}
+
+.note {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    height: 20px;
+    padding: 5px;
+}
+
+.empty-notes{
+    padding: 40% 0 0 18%;
+    color:#bdbdbd;
+}
+
+.note-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.delete-icon {
+    cursor: pointer;
+}
+
+.bottom-content{
+    margin-top: auto;
+}
+
+.bottom-content input{
+    display: block;
+    width: 98.5%;
+    outline: none;
+    border: none;
+    background-color: #ebebeb;
+    height: 30px;
+}
+
+.bottom-content .add-note-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    margin-top: auto;
+    border-radius: 0px 0px 10px 10px;
+}
+
+/*Subjects*/
+.subjects-bar {
+    margin-top: -50px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the right side */
+    min-height: 100vh;
+    width: 7%; /* Set the width of the sidebar */
+    background-color: #ffffff; /* Set background color */
+    padding: 10px; /* Add some padding to the sidebar */
+    border-top: 1px solid #cdcdcd;
+    box-shadow: 0px 5px 2px 2px #cfd0dd;
+}
+
+.subjects-title{
+    align-self: center;
+    margin: 20px 0 15px 0;
+    font-size: 20px;
+}
+
+.subject {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px; /* Add margin between subjects */
+}
+
+.subject-content a{
+    color:#000000;
+}
+
+.subject-content{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 10px;
+}
+
+.subject-icon {
+    width: 20px; /* Set width for the icon */
+    height: 20px; /* Set height for the icon */
+    margin-right: 10px; /* Add margin between icon and text */
+}
+
+/* NavBar */
 .navBar table{
     width: 100%;
     height: 50px;
@@ -40,10 +225,18 @@ body{
     display: none;
     position: absolute;
     background-color: #ffffff;
+    scale:calc(0.9);
+    margin-left: -35px;
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+    box-shadow: none;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .dropdown:hover .dropdown-content {
     display: block;
+    opacity: 1; /* Set opacity to 1 when the dropdown is visible */
+    pointer-events: auto; /* Enable interaction when the dropdown is visible */
 }
 
 .data{
