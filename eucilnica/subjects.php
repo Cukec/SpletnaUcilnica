@@ -1,15 +1,8 @@
 <?php include("config.php"); include("user_info.php");
 
-$sql = "SELECT * FROM teacher_subject WHERE user_id = $user_id";
-$result = mysqli_query($conn,$sql);
-
-/*while($row = mysqli_fetch_array($result)){
-    $sql1 = "SELECT class_name FROM subject WHERE subject_id = $row[subject_id]";
-    $result1 = mysqli_query($conn, $sql1);
-    $row1 = mysqli_fetch_array($result1);
-
-    echo "$row1[class_name]";
-}*/
+if(isset($_GET['id'])){
+    $sid = $_GET['id'];
+}
 
 ?>
 
@@ -34,18 +27,43 @@ $result = mysqli_query($conn,$sql);
         </table>
     </div>
     <div>
-        <h3>Your Subjects:</h3>
         <?php
-        while($row = mysqli_fetch_array($result)){
-        ?>
-        <a href="#"><?php
-        
-        $sql1 = "SELECT * FROM subject WHERE subject_id = $row[class_name]";
-        $result1 = mysqli_query($conn, $sql1);
-        $row1 = mysqli_fetch_array($result1);
-        echo $row1['class_name'] ?></a>
-        <?php
+        if($role == 't'){
+            include('addAsignment.php');
         }
+        ?>
+    </div>
+    <div class="assignments">
+        <?php /*
+        
+        $sql = "SELECT * FROM asignment WHERE subject_id = $sid";
+        $result = $conn->query($sql);
+        
+        if($result->num_rows > 0){
+            
+
+            for($i = 0; $i < $result->num_rows; $i++){
+                $row = mysqli_fetch_assoc($result);
+                $class_id = $row['subject_id'];
+                $assignment_id = $row['asignment_id'];
+                
+                $sql = "SELECT class_name FROM subject WHERE subject_id='$class_id'";
+                $result2 = $conn->query($sql);
+                $class_name = mysqli_fetch_assoc($result2);
+                ?>
+                
+                    <div class="assignment-preview">
+                        <div class="title"> <?php echo $row['title']; ?> </div>
+                        <div class="assignment-subject"><p><?php echo $class_name['class_name']; ?></p></div>
+                        <div class="description"><b>Description: </b><?php echo $row['description']; ?></div>
+                        <a href="assignment.php?id='<?php echo urlencode($assignment_id); ?>'" class="action-button">View Assignment</a>
+                    </div>
+                
+            <?php
+
+            }
+        }
+*/
         ?>
     </div>
 </body>

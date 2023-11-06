@@ -100,7 +100,7 @@ if(isset($_POST["subject"])){
         </table>
     </div>
         <div class="card" style="margin: 50px">
-                <h4 class="title">Edit student</h4>
+                <h4 class="title">Edit teacher</h4>
                 <form method="POST" action="">
                     <div class="field">
                         <svg class="input-icon" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
