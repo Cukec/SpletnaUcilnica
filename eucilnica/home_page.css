@@ -44,6 +44,12 @@ body{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.empty-assignment{
+    height: 7%;
+    border: 2px dashed #ccc;
+    text-align: center;
+}
+
 .assignment-subject {
     font-size: 18px;
     color: #555;
