@@ -81,6 +81,8 @@ body{
 
 /*Drag and drop*/
 #drop-area {
+    display: flex;
+    flex-direction: column;
     width: 90%;
     margin-left: 4.8%;
     height: 200px;

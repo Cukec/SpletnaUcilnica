@@ -63,7 +63,10 @@ $class_name = mysqli_fetch_assoc($subject_result);
                     ?>
                 </div>
                 <div id="drop-area">
-                    <span class="drop-text">Drag & Drop files here</span>
+                    <form action="upload.php?id=<?php echo urlencode($assignment_id); ?>" method="POST" enctype="multipart/form-data">
+                        <input type="file" name="file">
+                        <input type="submit" class="">
+                    </form>
                 </div>
             </div>
         </div>

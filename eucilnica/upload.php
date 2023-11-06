@@ -3,57 +3,45 @@
 include("config.php");
 include("user_info.php");
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $uploadDir = "files/";
-    $uploadedFiles = [];
+$assignment_id = $_GET['id'];
 
-    if (!is_dir($uploadDir)) {
-        mkdir($uploadDir, 0755, true);
-    }
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["file"])) {
+    $uploadDirectory = "files/";
+    $fileName = $uploadDirectory . basename($_FILES["file"]["name"]);
 
-    $file_sql = $conn->prepare("INSERT INTO file (file_id, path) VALUES (NULL,?)");
-    echo "1";
+    if (move_uploaded_file($_FILES["file"]["tmp_name"], $fileName)) {
+        echo "File uploaded successfully. File path: " . $fileName;
 
-    foreach ($_FILES["files"]["error"] as $key => $error) {
-        if ($error == UPLOAD_ERR_OK) {
-            $tmpName = $_FILES["files"]["tmp_name"][$key];
-            $fileName = basename($_FILES["files"]["name"][$key]);
-            $uploadPath = $uploadDir . $fileName;
+        
+        $file_sql = "INSERT INTO file (file_id, path) VALUES (NULL, '$fileName')";
 
-            move_uploaded_file($tmpName, $uploadPath);
-            $uploadedFiles[] = $fileName;
-
-            //Insert file into file table
-            $file_sql->bind_param("s", $uploadPath);
-            $file_sql->execute();
-
-            echo "1";
-
-            if ($file_sql->errno) {
-                echo "Error: " . $file_sql->error;
-            } else {
-                echo "File inserted successfully!";
-            }
-
-            /*Get the inserted file id
-            $get_file_sql = "SELECT * FROM file WHERE path='$uploadPath'";
-            $file_result = $conn->query($get_file_sql);
-            $file_row = mysqli_fetch_assoc($file_result);
-
-            $file_id = $file_row['file_id'];
-
-            //Insert file into handout
-            $handout_sql = "INSERT INTO handout (handout_id, file_id, comment_id, user_id, grade) VALUES (NULL, '$file_id', NULL, '$user_id', NULL);
-            $handout_stmt = $conn->prepare($handout_sql);
-            $handout_stmt->execute();
-            */
+        if ($conn->query($file_sql) === TRUE) {
+            echo "Record saved into the table FILES successfully.";
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
         }
+
+        $file_sql = "SELECT * FROM file WHERE path='$fileName'";
+        $file_result = $conn->query($file_sql);
+        $file_row = mysqli_fetch_assoc($file_result);
+
+        $file_id = $file_row['file_id'];
+
+        $handout_sql = "INSERT INTO handout (handout_id, file_id, comment_id, user_id, grade) VALUES (NULL, '$file_id', NULL, '$user_id', NULL)";
+
+        if ($conn->query($handout_sql) === TRUE) {
+            echo "Record saved into the table HANDOUT successfully.";
+            //header("location: assignment.php?id=$assignment_id");
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+
+    } else {
+        echo "Error uploading the file.";
     }
-    header("Content-Type: application/json");
-    header("Access-Control-Allow-Origin: *");
-    echo json_encode(["message" => "Files uploaded successfully", "files" => $uploadedFiles]);
+
 } else {
-    header("HTTP/1.1 405 Method Not Allowed");
-    echo json_encode(["error" => "Invalid request method"]);
+    echo "Invalid request or no file uploaded.";
 }
+
 ?>

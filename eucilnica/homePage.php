@@ -59,8 +59,29 @@
 
             <?php
             
-            $sql = "SELECT * FROM subject";
-            $subject_result = $conn->query($sql);
+            $subject_result;
+
+            if($role == 's'){
+                $sql = "SELECT * 
+                FROM subject sub 
+                JOIN student_subject stu 
+                ON sub.subject_id = stu.subject_id 
+                JOIN user u 
+                ON stu.user_id = u.user_id 
+                WHERE u.user_id = $user_id";
+                $subject_result = $conn->query($sql);
+            }else if($role == 't'){
+                $sql = "SELECT * 
+                FROM subject sub 
+                JOIN teacher_subject tea 
+                ON sub.subject_id = tea.subject_id 
+                JOIN user u 
+                ON tea.user_id = u.user_id
+                WHERE u.user_id = $user_id";
+                $subject_result = $conn->query($sql);
+            }
+
+            
 
             if($subject_result->num_rows > 0){
 
@@ -106,8 +127,23 @@
         <div class="assignments">
         <?php 
         
-        $sql = "SELECT * FROM asignment";
-        $result = $conn->query($sql);
+        if($role == 's'){
+            $sql = "SELECT * 
+            FROM asignment asi 
+            JOIN subject sub ON asi.subject_id = sub.subject_id 
+            JOIN student_subject stu ON sub.subject_id = stu.subject_id 
+            JOIN user u ON stu.user_id = u.user_id 
+            WHERE u.user_id = $user_id;";
+            $result = $conn->query($sql);
+        }else if($role == 't'){
+            $sql = "SELECT * 
+            FROM asignment asi 
+            JOIN subject sub ON asi.subject_id = sub.subject_id 
+            JOIN teacher_subject tea ON sub.subject_id = tea.subject_id 
+            JOIN user u ON tea.user_id = u.user_id 
+            WHERE u.user_id = $user_id;";
+            $result = $conn->query($sql);
+        }
         
         if($result->num_rows > 0){
             
