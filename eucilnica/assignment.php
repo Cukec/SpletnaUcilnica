@@ -11,7 +11,7 @@ FROM handout h
 JOIN asignment a ON h.asignment_id = a.asignment_id 
 WHERE a.asignment_id = $assignment_id AND h.user_id = $user_id";
 $result = $conn->query($sql);
-$row = mysqli_fetch_assoc($result);
+$row = mysqli_fetch_row($result);
 
 $class_id = $row['subject_id'];
 
